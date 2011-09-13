@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <math.h>
+#include "inc.c"
+typedef int bool;
+enum{ FALSE, TRUE };
+void addIfDivisible(long val, double *list, int *pos);
+bool isDivisible(long val, double *list, int *pos);
+MAIN {
+    /*if(!(argc * (argc-1)))
+    {
+        printf("There must be something to do!");
+        return -1;
+    }
+    double highest = floor(sqrt(argv++));
+    */
+    double *list = calloc(sizeof(double), 30000);
+    *(list) = 1;
+    double long i = 2L;
+    int tmp = 0;
+    int *pos=&tmp;
+    for(i; i < floor(sqrt(600851475143LL)); i++)
+    {
+        addIfDivisible(i,list, pos);
+    }
+    printf("The list is %d after all of that\n", *pos);
+    *(list + tmp) = 0;
+    printf("the factor is: %d", isDivisible(600851475143LL,list,pos) );
+}
+
+void addIfDivisible(long val, double *list, int *pos)
+{
+    if(!isDivisible(val,list,pos))
+    {
+        *(list + (*pos)++) = val;
+    }    
+}
+
+bool isDivisible(long val, double *list, int *pos)
+{
+    double curr;
+    int vals = *pos;
+    while(vals--)
+    {
+        curr = *(list + vals);
+        if(1 >= curr) continue;
+        double tmp = val / curr;
+        if(floor(tmp) == tmp) return curr;
+    }
+    return FALSE;
+}
