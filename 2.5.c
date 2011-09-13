@@ -15,8 +15,13 @@ TRIE newTrie();
 
 
 MAIN {
-	char* arr[4] = {"abc", "def", "fgh", "\0"};
-	any(NULL, arr);
+	char* a1[1];
+	char* arr[3] = {"abc", "def"};
+	//arr[2]=(char *)arr;
+	char** a2   = (char**)malloc(sizeof(a1)*256);
+	a2[0]=arr;
+	arr[3] = a2;
+//	any(NULL, arr);
 }
 
 long any(char searched[], char* sought[])
@@ -52,7 +57,7 @@ void populateTrie(TRIE trie, char* sought)
 	int * pntr;
 	for(i = 0; sought[i] != '\0'; i++)
 	{
-		trie
+	//	trie
 	}
 }
 
